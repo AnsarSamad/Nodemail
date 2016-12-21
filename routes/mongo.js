@@ -2,7 +2,8 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
   //var monk = require('monk');
-var url = 'mongodb://localhost:27017/nodemail';
+//var url = 'mongodb://localhost:27017/nodemail';
+var url = 'mongodb://abcd:abcd@ds133428.mlab.com:33428/nodemail';
 
 var validate = function validateUser(user,callback){
   MongoClient.connect(url,function(err,db){
