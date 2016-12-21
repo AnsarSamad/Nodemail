@@ -2,16 +2,23 @@ var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
 
   //var monk = require('monk');
-var url = 'mongodb://abcd:abcd@ds133428.mlab.com:33428/nodemail';
-module.export.db = new Mongo().getDB(url);
+var url = 'mongodb://localhost:27017/nodemail';
 
-
-    module.export.findAllDocs = function(db,callback){
+var validate = function validateUser(user,callback){
+  MongoClient.connect(url,function(err,db){
+    console.log("validate user :"+user)
   var collection = db.collection('user');
-  collection.find({}).toArray(function(err,docs){
-    assert.equal(err,null);
-    console.log("found thee following doc");
-    console.log(docs);
-    callback(docs);
+    collection.findOne({'name':user} ,function(err,docs){
+      assert.equal(err,null);
+      console.log("found thee following doc");
+      console.log(docs);
+      callback(docs)
+      
+    });
   });
+
 }
+exports.validate = validate;
+
+ //   module.export.findAllDocs = function(db,callback){
+  
