@@ -59,6 +59,9 @@ app.listen(app.get('port'), function() {
 var login = require('./routes/login');
 app.use('/login', login);
 
+var register = require('./routes/register');
+app.use('/register', register);
+
 /* adding HTML as the template view  */
 var fs = require('fs') // this engine requires the fs module
 app.engine('html', function (filePath, options, callback) { // define the template engine

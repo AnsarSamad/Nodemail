@@ -19,7 +19,19 @@ var validate = function validateUser(user,callback){
   });
 
 }
+
+var register = function register(username,email,password,callback){
+  MongoClient.connect(url,function(err,db){
+  db.collection('user').insertOne({name:username,email:email,password:password},function(err,resul){
+    assert.equal(err, null);
+    console.log("Inserted a document into the user collection."+resul);
+    callback();
+  })
+  });
+}
+
 exports.validate = validate;
+exports.register = register;
 
  //   module.export.findAllDocs = function(db,callback){
   
